@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Plantilla profesional para estudios de abogados, contadores, ingenieros. Personalizable con tus datos.">
+  <meta name="keywords" content="estudio profesional, servicios legales, contabilidad, ingeniería, consultoría">
+  <meta name="author" content="Agencia Digital">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="[Tu Estudio] | Soluciones integrales">
+  <meta property="og:description" content="Plantilla lista para personalizar con tu marca y servicios.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tudominio.com">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Tu+Logo">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://tudominio.com">
+  <title>[Tu Estudio] | Soluciones profesionales</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ------------------------------
+       VARIABLES GLOBALES
+    -------------------------------- */
+    :root {
+      --primary: #0a4b6e;
+      --primary-dark: #063549;
+      --secondary: #e6a017;
+      --secondary-dark: #b87d0c;
+      --gray-light: #f8fafc;
+      --gray-medium: #e2e8f0;
+      --gray-dark: #334155;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --white: #ffffff;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      --radius-card: 1.25rem;
+      --transition: all 0.3s ease;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-dark);
+      background-color: var(--white);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      padding: 0.8rem 0;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .logo-img {
+      height: 45px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-icon {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    .logo h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links li a {
+      font-weight: 500;
+      transition: var(--transition);
+      color: var(--text-dark);
+    }
+    .nav-links li a:hover {
+      color: var(--primary);
+    }
+    .btn-outline {
+      border: 1.5px solid var(--primary);
+      padding: 0.5rem 1.25rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: var(--primary);
+      transition: var(--transition);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--primary);
+    }
+
+    /* Hero Section con imagen de fondo y degradado translúcido más claro */
+    .hero {
+      position: relative;
+      background-image: url('hero.png');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      padding: 8rem 0;
+      isolation: isolate;
+    }
+    /* Degradado más claro (menos opaco) para que se vea mejor la imagen */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10, 75, 110, 0.55) 0%, rgba(6, 53, 73, 0.5) 100%);
+      z-index: 1;
+    }
+    /* Contenido por encima */
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content {
+      max-width: 700px;
+      text-align: left;
+    }
+    /* Badge contenedor del logo */
+    .hero-badge {
+      display: inline-block;
+      margin-bottom: 1.2rem;
+    }
+    .hero-logo-img {
+      max-height: 70px;
+      width: auto;
+      display: block;
+      background: rgba(255,255,255,0.9);
+      border-radius: 12px;
+      padding: 4px 8px;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      color: white;
+    }
+    .hero-content p {
+      font-size: 1.125rem;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 2rem;
+    }
+    /* Botones del hero */
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: var(--transition);
+      cursor: pointer;
+      text-align: center;
+      border: none;
+    }
+    .hero-buttons .btn-primary {
+      background: var(--secondary);
+      color: var(--text-dark);
+      border: 1px solid var(--secondary);
+    }
+    .hero-buttons .btn-primary:hover {
+      background: var(--secondary-dark);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--secondary-dark);
+    }
+    .hero-buttons .btn-secondary {
+      background: transparent;
+      border: 1.5px solid white;
+      color: white;
+    }
+    .hero-buttons .btn-secondary:hover {
+      background: white;
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Botón WhatsApp */
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: var(--transition);
+      line-height: 1;
+      white-space: nowrap;
+      margin-top: 1rem;
+      width: fit-content;
+    }
+    .btn-whatsapp i {
+      font-size: 1.2rem;
+    }
+    .btn-whatsapp:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Servicios */
+    .section {
+      padding: 5rem 0;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+    .section-header h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--gray-medium);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: transparent;
+    }
+    .service-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .service-card p {
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+    .btn-consult {
+      background: transparent;
+      border: 1px solid var(--secondary);
+      color: var(--secondary-dark);
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-block;
+      align-self: center;
+    }
+    .btn-consult:hover {
+      background: var(--secondary);
+      color: white;
+      border-color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    /* About + mapa debajo */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    .about-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .stat {
+      background: var(--gray-light);
+      padding: 1rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      flex: 1;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .map-below {
+      margin-top: 2rem;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .map-below iframe {
+      width: 100%;
+      height: 350px;
+      border: 0;
+    }
+
+    /* Contacto en dos columnas */
+    .contact-two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .contact-info-card {
+      background: var(--gray-light);
+      padding: 2rem;
+      border-radius: 1.5rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-detail i {
+      font-size: 1.4rem;
+      color: var(--primary);
+      width: 2rem;
+    }
+    .social-links-vertical {
+      margin: 1.5rem 0;
+    }
+    .social-circle-contact {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      background: rgba(10, 75, 110, 0.1);
+      border-radius: 50%;
+      margin-right: 0.8rem;
+      transition: var(--transition);
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    .social-circle-contact:hover {
+      background: var(--secondary);
+      color: white;
+      transform: translateY(-3px);
+    }
+    .contact-form-card {
+      background: var(--gray-light);
+      padding: 2rem;
+      border-radius: 1.5rem;
+    }
+    .lead-form h4 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+    .lead-form input, 
+    .lead-form textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--gray-medium);
+      border-radius: 1rem;
+      font-family: inherit;
+      font-size: 1rem;
+      background: var(--white);
+      transition: var(--transition);
+    }
+    .lead-form input:focus, 
+    .lead-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(10, 75, 110, 0.1);
+    }
+    .lead-form button {
+      width: 100%;
+      background: var(--secondary);
+      border: none;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.9rem;
+      border-radius: 40px;
+      color: white;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .lead-form button:hover {
+      background: var(--secondary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .social-circle-footer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      margin-right: 0.8rem;
+      transition: var(--transition);
+      color: #cbd5e1;
+      font-size: 1.2rem;
+    }
+    .social-circle-footer:hover {
+      background: var(--secondary);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #1e293b;
+      font-size: 0.85rem;
+    }
+
+    /* Botón flotante WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: var(--transition);
+      z-index: 99;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background: #128C7E;
+    }
+
+    /* Animaciones */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about-grid, .contact-two-columns {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem 0;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-icon {
+        display: block;
+      }
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .hero-logo-img {
+        max-height: 50px;
+      }
+    }
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 1rem;
+      }
+      .section {
+        padding: 3rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="navbar">
+  <div class="container nav-container">
+    <div class="logo">
+      <i class="fas fa-briefcase logo-icon"></i>
+      <h2>[Nombre de tu Estudio]</h2>
+    </div>
+    <div class="menu-icon" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto" class="btn-outline">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- HERO con imagen de fondo hero.png y logo con placeholder real logo.png -->
+  <section id="home" class="hero reveal">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <!-- Logo del estudio: se mostrará logo.png si existe, caso contrario un placeholder visual -->
+          <img src="logo.png" alt="Logo del estudio" class="hero-logo-img">
+        </div>
+        <h1>Soluciones legales, contables, técnicas...</h1>
+        <p>Te acompañamos con un equipo multidisciplinario para resolver desafíos legales, financieros e ingenieriles. Atención personalizada y resultados medibles.</p>
+        <div class="hero-buttons">
+          <a href="#contacto" class="btn-primary">Solicitar consulta <i class="fas fa-arrow-right"></i></a>
+          <a href="#servicios" class="btn-secondary">Conoce nuestros servicios</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="section reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>Áreas de especialización</h2>
+        <p>Soluciones adaptadas a las necesidades de tu empresa o particular</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-gavel"></i></div>
+          <h3>[Tu Servicio 1]</h3>
+          <p>Descripción breve de tu servicio profesional. Agrega beneficios clave para tus clientes.</p>
+          <a href="#contacto" class="btn-consult">Consultar <i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>[Tu Servicio 2]</h3>
+          <p>Explica cómo ayudas a tus clientes a resolver problemas específicos. Enfócate en el valor diferencial.</p>
+          <a href="#contacto" class="btn-consult">Consultar <i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-drafting-compass"></i></div>
+          <h3>[Tu Servicio 3]</h3>
+          <p>Soluciones a medida con estándares de calidad y ética profesional. Resultados garantizados.</p>
+          <a href="#contacto" class="btn-consult">Consultar <i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>[Tu Servicio 4]</h3>
+          <p>Asesoría continua, gestión de riesgos y acompañamiento estratégico para tu negocio.</p>
+          <a href="#contacto" class="btn-consult">Consultar <i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS + MAPA (Rosario, Santa Fe) -->
+  <section id="nosotros" class="section reveal" style="background: var(--gray-light);">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <h2>Presentación de tu estudio</h2>
+          <p>En [Nombre de tu Estudio] integramos profesionales multidisciplinarios para ofrecer un acompañamiento completo. Nos anticipamos a los desafíos legales, financieros y técnicos para brindarte soluciones efectivas.</p>
+          <div class="about-stats">
+            <div class="stat"><div class="stat-number">[XX]+</div><div>Años de experiencia</div></div>
+            <div class="stat"><div class="stat-number">[XXX]+</div><div>Clientes satisfechos</div></div>
+            <div class="stat"><div class="stat-number">[XX]%</div><div>Casos exitosos</div></div>
+          </div>
+        </div>
+        <div style="background: white; border-radius: 1.5rem; overflow: hidden; box-shadow: var(--shadow-sm);">
+          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop" alt="Equipo profesional" style="width:100%; height:100%; object-fit: cover; display: block;">
+        </div>
+      </div>
+      <!-- Mapa: Rosario, Santa Fe -->
+      <div class="map-below">
+        <iframe title="Ubicación del estudio en Rosario, Santa Fe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26742.947356972587!2d-60.66780709581021!3d-32.9586057684372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b6532c1f9b5b4f%3A0x5b5c6b8e5c5f6e8!2sRosario%2C%20Santa%20Fe%2C%20Argentina!5e0!3m2!1ses!2sar!4v1690000000000!5m2!1ses!2sar" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>Póngase en contacto</h2>
+        <p>Estamos para ayudarle. Elija el canal que prefiera</p>
+      </div>
+      <div class="contact-two-columns">
+        <div class="contact-info-card">
+          <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> <span>[Dirección completa de tu oficina]</span></div>
+          <div class="contact-detail"><i class="fas fa-phone-alt"></i> <span>[Teléfono de contacto]</span></div>
+          <div class="contact-detail"><i class="fas fa-envelope"></i> <span>[correo@tuestudio.com]</span></div>
+          <div class="contact-detail"><i class="fas fa-clock"></i> <span>Lun a Vie: 9:00 - 18:00 hs</span></div>
+          
+          <div class="social-links-vertical">
+            <strong style="display: block; margin-bottom: 0.8rem;">Síguenos:</strong>
+            <div>
+              <a href="#" target="_blank" class="social-circle-contact"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" target="_blank" class="social-circle-contact"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" target="_blank" class="social-circle-contact"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+          
+          <a href="#" id="contactWhatsAppBtn" class="btn-whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chatea con nosotros
+          </a>
+        </div>
+        
+        <div class="contact-form-card">
+          <form id="leadFormContact" class="lead-form">
+            <h4><i class="fas fa-paper-plane"></i> Envianos tu consulta:</h4>
+            <input type="text" id="contactName" placeholder="Nombre completo *" required>
+            <input type="email" id="contactEmail" placeholder="Correo electrónico *" required>
+            <input type="tel" id="contactPhone" placeholder="Teléfono">
+            <textarea rows="4" id="contactMsg" placeholder="¿En qué podemos ayudarle?"></textarea>
+            <button type="submit" class="btn-primary">Enviar mensaje →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>[Nombre de tu Estudio]</h4>
+        <p>Excelencia y compromiso en cada asesoría.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces</h4>
+        <ul style="list-style: none;">
+          <li><a href="#home" style="color:#cbd5e1;">Inicio</a></li>
+          <li><a href="#servicios" style="color:#cbd5e1;">Servicios</a></li>
+          <li><a href="#nosotros" style="color:#cbd5e1;">Nosotros</a></li>
+          <li><a href="#contacto" style="color:#cbd5e1;">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Síguenos</h4>
+        <div class="social-links">
+          <a href="#" target="_blank" class="social-circle-footer"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" target="_blank" class="social-circle-footer"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank" class="social-circle-footer"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; <span id="current-year"></span> [Nombre de tu Estudio]. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="#" id="whatsappFloatBtn" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+  // Funciones auxiliares (menú, año, scroll reveal, demo formulario)
+  document.getElementById('current-year').innerText = new Date().getFullYear();
+
+  const toggleBtn = document.getElementById('menu-toggle');
+  const navLinksMenu = document.getElementById('nav-links');
+  if (toggleBtn && navLinksMenu) {
+    toggleBtn.addEventListener('click', () => navLinksMenu.classList.toggle('active'));
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinksMenu.classList.remove('active')));
+  }
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
+  reveals.forEach(el => observer.observe(el));
+
+  const contactForm = document.getElementById('leadFormContact');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      if (!name || !email) {
+        alert("Por favor complete nombre y correo electrónico.");
+        return;
+      }
+      alert("✅ Demo: Su consulta ha sido recibida. (Configure el endpoint de envío para producción)");
+      contactForm.reset();
+    });
+  }
+
+  const waFloat = document.getElementById('whatsappFloatBtn');
+  const waContact = document.getElementById('contactWhatsAppBtn');
+  const defaultWhatsAppLink = "https://wa.me/5491112345678?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20sus%20servicios%20profesionales.";
+  if (waFloat) waFloat.href = defaultWhatsAppLink;
+  if (waContact) waContact.href = defaultWhatsAppLink;
+</script>
+
+<!-- Schema estructurado -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "[Nombre de tu Estudio]",
+  "address": "[Dirección completa de tu oficina]",
+  "telephone": "[Teléfono de contacto]",
+  "email": "[correo@tuestudio.com]",
+  "url": "https://tudominio.com",
+  "openingHours": "Mo-Fr 09:00-18:00"
+}
+</script>
+</body>
+</html>
