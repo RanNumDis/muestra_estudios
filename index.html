@@ -258,6 +258,34 @@
       box-shadow: var(--shadow-sm);
     }
 
+    /* Botón para el formulario (WhatsApp) con ancho completo */
+    .btn-whatsapp-form {
+      background: #25D366;
+      color: white;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 0.9rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: var(--transition);
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 0.5rem;
+    }
+    .btn-whatsapp-form i {
+      font-size: 1.3rem;
+    }
+    .btn-whatsapp-form:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
     /* Servicios */
     .section {
       padding: 5rem 0;
@@ -416,8 +444,9 @@
       padding: 2rem;
       border-radius: 1.5rem;
     }
-    .lead-form h4 {
-      margin-bottom: 1rem;
+    .lead-form h4,
+    .contact-info-card h4 {
+      margin-bottom: 2rem;
       font-size: 1.2rem;
       color: var(--primary-dark);
       font-weight: 600;
@@ -440,21 +469,9 @@
       border-color: var(--primary);
       box-shadow: 0 0 0 3px rgba(10, 75, 110, 0.1);
     }
-    .lead-form button {
-      width: 100%;
-      background: var(--secondary);
-      border: none;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 0.9rem;
-      border-radius: 40px;
-      color: white;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .lead-form button:hover {
-      background: var(--secondary-dark);
-      transform: translateY(-2px);
+    /* Ya no usamos el botón submit tradicional del formulario */
+    .lead-form button[type="submit"] {
+      display: none;
     }
 
     /* Footer */
@@ -595,7 +612,6 @@
     <div class="container">
       <div class="hero-content">
         <div class="hero-badge">
-          <!-- Logo del estudio: se mostrará logo.png si existe, caso contrario un placeholder visual -->
           <img src="logo.png" alt="Logo del estudio" class="hero-logo-img">
         </div>
         <h1>Soluciones legales, contables, técnicas...</h1>
@@ -663,7 +679,7 @@
     </div>
   </section>
 
-  <!-- CONTACTO -->
+  <!-- CONTACTO (formulario a la izquierda, tarjeta info a la derecha) -->
   <section id="contacto" class="section reveal">
     <div class="container">
       <div class="section-header">
@@ -671,7 +687,24 @@
         <p>Estamos para ayudarle. Elija el canal que prefiera</p>
       </div>
       <div class="contact-two-columns">
+        <!-- Formulario (izquierda) -->
+        <div class="contact-form-card">
+          <form id="leadFormContact" class="lead-form">
+            <h4><i class="fas fa-paper-plane"></i> Envianos tu consulta:</h4>
+            <input type="text" id="contactName" placeholder="Nombre completo *" required>
+            <input type="email" id="contactEmail" placeholder="Correo electrónico *" required>
+            <input type="tel" id="contactPhone" placeholder="Teléfono">
+            <textarea rows="4" id="contactMsg" placeholder="¿En qué podemos ayudarle?"></textarea>
+            <!-- Botón que ahora funciona como WhatsApp (texto "Enviar mensaje") -->
+            <button type="button" id="whatsappFormBtn" class="btn-whatsapp-form">
+              <i class="fab fa-whatsapp"></i> Enviar mensaje
+            </button>
+          </form>
+        </div>
+
+        <!-- Tarjeta de información (derecha) con nuevo título y sin botón "Chatea con nosotros" -->
         <div class="contact-info-card">
+          <h4><i class="fas fa-address-card"></i> Datos de atención y contacto</h4>
           <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> <span>[Dirección completa de tu oficina]</span></div>
           <div class="contact-detail"><i class="fas fa-phone-alt"></i> <span>[Teléfono de contacto]</span></div>
           <div class="contact-detail"><i class="fas fa-envelope"></i> <span>[correo@tuestudio.com]</span></div>
@@ -685,21 +718,6 @@
               <a href="#" target="_blank" class="social-circle-contact"><i class="fab fa-instagram"></i></a>
             </div>
           </div>
-          
-          <a href="#" id="contactWhatsAppBtn" class="btn-whatsapp" target="_blank">
-            <i class="fab fa-whatsapp"></i> Chatea con nosotros
-          </a>
-        </div>
-        
-        <div class="contact-form-card">
-          <form id="leadFormContact" class="lead-form">
-            <h4><i class="fas fa-paper-plane"></i> Envianos tu consulta:</h4>
-            <input type="text" id="contactName" placeholder="Nombre completo *" required>
-            <input type="email" id="contactEmail" placeholder="Correo electrónico *" required>
-            <input type="tel" id="contactPhone" placeholder="Teléfono">
-            <textarea rows="4" id="contactMsg" placeholder="¿En qué podemos ayudarle?"></textarea>
-            <button type="submit" class="btn-primary">Enviar mensaje →</button>
-          </form>
         </div>
       </div>
     </div>
@@ -741,17 +759,22 @@
 <a href="#" id="whatsappFloatBtn" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <script>
-  // Funciones auxiliares (menú, año, scroll reveal, demo formulario)
-  document.getElementById('current-year').innerText = new Date().getFullYear();
-
+  // Elementos del DOM
   const toggleBtn = document.getElementById('menu-toggle');
   const navLinksMenu = document.getElementById('nav-links');
+  const currentYearSpan = document.getElementById('current-year');
+  const reveals = document.querySelectorAll('.reveal');
+  
+  // Año actual en footer
+  if (currentYearSpan) currentYearSpan.innerText = new Date().getFullYear();
+
+  // Menú responsive
   if (toggleBtn && navLinksMenu) {
     toggleBtn.addEventListener('click', () => navLinksMenu.classList.toggle('active'));
     document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinksMenu.classList.remove('active')));
   }
 
-  const reveals = document.querySelectorAll('.reveal');
+  // Animaciones al hacer scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -762,26 +785,45 @@
   }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
   reveals.forEach(el => observer.observe(el));
 
-  const contactForm = document.getElementById('leadFormContact');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = document.getElementById('contactName').value.trim();
-      const email = document.getElementById('contactEmail').value.trim();
-      if (!name || !email) {
-        alert("Por favor complete nombre y correo electrónico.");
-        return;
-      }
-      alert("✅ Demo: Su consulta ha sido recibida. (Configure el endpoint de envío para producción)");
-      contactForm.reset();
-    });
+  // Configuración de WhatsApp (número y texto base)
+  const whatsappNumber = "5491112345678"; // Reemplazar con el número real
+  const baseWhatsAppUrl = `https://wa.me/${whatsappNumber}?text=`;
+
+  // Función para codificar y abrir WhatsApp con datos del formulario
+  function sendToWhatsApp(event) {
+    const name = document.getElementById('contactName')?.value.trim() || '';
+    const email = document.getElementById('contactEmail')?.value.trim() || '';
+    const phone = document.getElementById('contactPhone')?.value.trim() || '';
+    const message = document.getElementById('contactMsg')?.value.trim() || '';
+
+    if (!name) {
+      alert("Por favor, ingresa tu nombre.");
+      return;
+    }
+    if (!message) {
+      alert("Por favor, escribe tu consulta o mensaje.");
+      return;
+    }
+
+    let whatsappText = `Hola, necesito información sobre sus servicios profesionales.%0A%0A`;
+    whatsappText += `*Nombre:* ${encodeURIComponent(name)}%0A`;
+    if (email) whatsappText += `*Correo:* ${encodeURIComponent(email)}%0A`;
+    if (phone) whatsappText += `*Teléfono:* ${encodeURIComponent(phone)}%0A`;
+    whatsappText += `*Mensaje:* ${encodeURIComponent(message)}%0A`;
+
+    window.open(baseWhatsAppUrl + whatsappText, '_blank');
   }
 
+  // Asignar evento al botón de WhatsApp del formulario
+  const whatsappFormBtn = document.getElementById('whatsappFormBtn');
+  if (whatsappFormBtn) {
+    whatsappFormBtn.addEventListener('click', sendToWhatsApp);
+  }
+
+  // Configurar el botón flotante de WhatsApp (sin el botón de la tarjeta ya que lo eliminamos)
   const waFloat = document.getElementById('whatsappFloatBtn');
-  const waContact = document.getElementById('contactWhatsAppBtn');
-  const defaultWhatsAppLink = "https://wa.me/5491112345678?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20sus%20servicios%20profesionales.";
+  const defaultWhatsAppLink = `https://wa.me/${whatsappNumber}?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20sus%20servicios%20profesionales.`;
   if (waFloat) waFloat.href = defaultWhatsAppLink;
-  if (waContact) waContact.href = defaultWhatsAppLink;
 </script>
 
 <!-- Schema estructurado -->
